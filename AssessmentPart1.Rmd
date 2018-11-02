@@ -1,10 +1,15 @@
 ---
 title: "Assessment Part 1"
-output: html_notebook
-author: Titus Ng [ucfnyyt] 
+author: "Titus Ng [ucfnyyt]"
+output:
+  html_document:
+    df_print: paged
 bibliography: AssignmentPart1.bib
 ---
-```{r eval=TRUE, results='hide'}
+```{r eval=TRUE, include = FALSE, results='hide'}
+r = getOption("repos")
+r["CRAN"] = "http://cran.us.r-project.org"
+options(repos = r)
 install.packages("maptools")
 install.packages("tmap")
 install.packages("RColorBrewer")
@@ -20,7 +25,7 @@ install.packages("leaflet")
 install.packages("citr")
 ```
 
-```{r echo = FALSE, results='hide'}
+```{r eval = TRUE, include=FALSE, results='hide'}
 library(dplyr)
 library(shinyjs)
 library(maptools)
@@ -48,6 +53,8 @@ To analyse this spatial distribution, a map of the change in median gross rent f
 
 
 ![QGIS Map](Los_Angeles_Change_in_Median_Gross_Rent.jpeg)
+
+
 Base layer for QGIS Map was  obtained from Spatial Analyst Felix Rohrbach's blog [@rohrbach_felix_awesome_2016].
 
 
@@ -58,7 +65,7 @@ __Critique of QGIS Mapping__
 1. Accessibility - Add Layer options (e.g. WMS/WMTS) make using online resources simple
 2. Intuitive - Due to affinities with software such as Photoshop, using GUI based mapping tools allows for much easier, intuitive execution of very specific manipulation, for instance of where exactly the legend, scales and title are located (rather than just in the corners). 
 3. Data - Field Calculator provides an alternative to editing in excel and tools to join data also exist. However, interface of QGIS means that it is not easy to do data cleaning. Preparing data in excel is much easier visually speaking and in r much quicker if one knows the code involved 
-4. Quality of Map - Due to the fact that the data that was readily available was categorised by Census Tract, the resulting map has an overly large number of units that make simple visual distinction difficult at low resolutions. Solutions include printing the image in large paper sizes or alternatively using an interactive map, as attempted in Part II.
+4. __Quality of Map__ - Due to the fact that the data that was readily available was categorised by Census Tract, the __resulting map has too many small units__ that make simple visual distinction difficult at low resolutions. Solutions include printing the image in large paper sizes or alternatively using an __interactive map__, as attempted in Part II.
 
 
 
@@ -123,7 +130,7 @@ leaflet1
 
 
 
-To Export Simple Features File (CensusTractDataMap) - for use in other software such as ArcGIS/QGIS:
+To Export for use in other software such as ArcGIS/QGIS:
 ```{r}
 #convert to SP file first
 class(CensusTractDataMap)
